@@ -3,7 +3,7 @@
  * @module muif/beans/instance
  */
 
-const {lockns} = require('../../lib/ns.cjs').create(module, exports);
+const {lockns, es: { console }} = require('../../lib/ns.cjs').create(module, exports);
 
 const {VirtualBean, BeanSecret} = require('./virtual.cjs');
 
