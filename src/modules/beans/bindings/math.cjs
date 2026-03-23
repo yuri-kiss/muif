@@ -23,7 +23,7 @@ exports.add = (a, b) => {
     bean.setValue(nextValue + b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue + a.getValue());
+    bean.setValue(a.getValue() + nextValue);
   });
   return bean;
 };
@@ -45,7 +45,7 @@ exports.sub = (a, b) => {
     bean.setValue(nextValue - b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue - a.getValue());
+    bean.setValue(a.getValue() - nextValue);
   });
   return bean;
 };
@@ -67,7 +67,7 @@ exports.mul = (a, b) => {
     bean.setValue(nextValue * b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue * a.getValue());
+    bean.setValue(a.getValue() - nextValue);
   });
   return bean;
 };
@@ -89,7 +89,7 @@ exports.div = (a, b) => {
     bean.setValue(nextValue / b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue / a.getValue());
+    bean.setValue(a.getValue() / nextValue);
   });
   return bean;
 };

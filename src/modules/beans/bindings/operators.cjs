@@ -67,7 +67,7 @@ exports.gt = (a, b) => {
     bean.setValue(nextValue > b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue > a.getValue());
+    bean.setValue(a.getValue() > nextValue);
   });
   return bean;
 };
@@ -89,7 +89,7 @@ exports.lt = (a, b) => {
     bean.setValue(nextValue < b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue < a.getValue());
+    bean.setValue(a.getValue() < nextValue);
   });
   return bean;
 };
@@ -111,13 +111,13 @@ exports.gtoe = (a, b) => {
     bean.setValue(nextValue >= b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue >= a.getValue());
+    bean.setValue(a.getValue() >= nextValue);
   });
   return bean;
 };
 
 /**
- * Bean version of `>=`.
+ * Bean version of `<=`.
  *
  * @template BTA, BTB
  *
@@ -133,7 +133,7 @@ exports.ltoe = (a, b) => {
     bean.setValue(nextValue <= b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue <= a.getValue());
+    bean.setValue(a.getValue() <= nextValue);
   });
   return bean;
 };
@@ -199,7 +199,7 @@ exports.bAnd = (a, b) => {
     bean.setValue(nextValue && b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue && a.getValue());
+    bean.setValue(a.getValue() && nextValue);
   });
   return bean;
 };
@@ -221,7 +221,7 @@ exports.bOr = (a, b) => {
     bean.setValue(nextValue || b.getValue());
   });
   b.addListener(({ nextValue }) => {
-    bean.setValue(nextValue || a.getValue());
+    bean.setValue(a.getValue() || nextValue);
   });
   return bean;
 };
