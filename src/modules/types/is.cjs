@@ -3,7 +3,7 @@
  * @module muif/types/is
  */
 
-const {lockns, es, lnullj} = require('../../lib/ns.cjs').create(module, exports);
+const {lockns, lnullj, es: { Symbol }} = require('../../lib/ns.cjs').create(module, exports);
 
 const lnullj = require('../../lib/lnullj.cjs');
 
