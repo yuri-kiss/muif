@@ -8,6 +8,8 @@ describe('muiflib', () => {
   require('./subtests/lib_ns.cjs');
   require('./subtests/lib_oop.cjs');
 
+  require('./subtests/modules/beans/index.cjs');
+
   describe('muif', () => {
     beforeEach(() => delete global.muif);
 
@@ -21,7 +23,7 @@ describe('muiflib', () => {
     it('requiring the normal version of the library exposes a copy of the library?',
       () => {
           const $muif = require('../src/index.cjs');
-          
+
           chai.expect(global.muif).equals($muif,     'normal version of the library did not pollute the global scope');
       }
       );
