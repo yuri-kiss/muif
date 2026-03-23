@@ -3,7 +3,7 @@
  * @module muif/types/is
  */
 
-const {lockns} = require('../../lib/ns.cjs').create(module, exports);
+const {lockns, es, lnullj} = require('../../lib/ns.cjs').create(module, exports);
 
 const lnullj = require('../../lib/lnullj.cjs');
 
@@ -77,6 +77,10 @@ exports.isCallable = /** @param {unknown} value @returns {boolean} */(value) => 
 
 exports.isDateLike = /** @param {unknown} value @returns {boolean} */(value) => (
   exports.isObject(value) && exports.isFunction(value.getFullYear)
+);
+
+exports.isSymbol = /** @param {unknown} value @returns {boolean} */(value) => (
+  (typeof value === 'symbol') || (value instanceof Symbol.REAL)
 );
 
 lockns();

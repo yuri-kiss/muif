@@ -11,6 +11,8 @@ const ns = {};
 const lnullj = require('./lnullj.cjs');
 const global = require('./es/globalThis.cjs');
 
+const T_esLike = require('./es/__esLike.cjs'); // TYPE ONLY.
+
 /**
  * @typedef {!(object & { exports: unknown })} INamespaceHandle_module
  */
@@ -18,6 +20,9 @@ const global = require('./es/globalThis.cjs');
  * @typedef INamespaceHandle
  * @property {() => void} lockns
  * @property {!(Window & typeof globalThis)} global
+ *
+ * @property {typeof lnullj} lnullj
+ * @property {typeof T_esLike} es
  */;
 
 ns.create = /** @param {INamespaceHandle_module} modul3 @returns {INamespaceHandle} */(modul3, export$) => {
@@ -29,6 +34,11 @@ ns.create = /** @param {INamespaceHandle_module} modul3 @returns {INamespaceHand
       modul3.exports = lnullj.lock(export$);
     },
     global: global, // Re-export of the global scope for ease of use.
+
+    // Re-export some basics to make life easier.
+    lnullj: lnullj,
+    // Lazilly loaded to prevent circular dependancies.
+    es: /** @type {typeof T_esLike & T_esLike} */ (require('./__es.cjs')),
   };
 };
 

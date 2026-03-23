@@ -3,10 +3,7 @@
  * @module muiflib/oop
  */
 
-const {lockns} = require('./ns.cjs').create(module, exports);
-
-const {Object} = require('./__es.cjs');
-const lnullj = require('./lnullj.cjs');
+const {lockns, lnullj, es: { Object }} = require('./ns.cjs').create(module, exports);
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain
 
