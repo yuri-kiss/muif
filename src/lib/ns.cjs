@@ -11,7 +11,7 @@ const ns = {};
 const lnullj = require('./lnullj.cjs');
 const global = require('./es/globalThis.cjs');
 
-/** @import T_es from "./__es.cjs" */
+/** @import T_es from './__es.cjs' */
 
 /**
  * @typedef {!(object & { exports: unknown })} INamespaceHandle_module
@@ -39,8 +39,8 @@ ns.create = /** @param {INamespaceHandle_module} modul3 @returns {INamespaceHand
     lnullj: lnullj,
     // Lazilly loaded to prevent circular dependancies.
     /**
-     * @type {typeof T_es)}
-     * @returns {typeof T_es)}
+     * @type {typeof T_es}
+     * @returns {typeof T_es}
      */
     get es() {
       return require('./__es.cjs');
