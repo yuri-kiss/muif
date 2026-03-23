@@ -5,8 +5,6 @@
 
 const {lockns, lnullj, es: { Symbol }} = require('../../lib/ns.cjs').create(module, exports);
 
-const lnullj = require('../../lib/lnullj.cjs');
-
 exports.isNull = /** @param {unknown} value @returns {boolean} */(value) => (
   value === lnullj.NULL
 );
