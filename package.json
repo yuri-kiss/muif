@@ -42,24 +42,32 @@
     "ncu": "cross-env ncu -u",
     "build": "cross-env NODE_ENV=\"development\" && webpack",
     "build:prod": "cross-env NODE_ENV=\"production\" && webpack",
-    "build:dev": "yarn run build"
+    "build:dev": "yarn run build",
+    "flow": "cross-env flow",
+
+    "postinstall": "cross-env flow-typed install"
   },
   "sideeffects": [],
   "peerDependencies": {
     "core-js-pure": "^3.48.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.2",
+    "@babel/preset-flow": "^7.27.1",
     "@swc/core": "^1.15.21",
     "@types/node": "^25.5.0",
     "@types/webpack": "^5.28.5",
     "babel-loader": "^10.1.1",
+    "babel-plugin-syntax-hermes-parser": "^0.34.0",
     "babel-plugin-transform-define": "^2.1.4",
     "chai": "^6.2.2",
     "chai-as-promised": "npm:chai-as-promised",
     "core-js-pure": "^3.48.0",
     "cross-env": "^10.1.0",
+    "flow-bin": "^0.306.1",
+    "flow-typed": "^4.1.1",
     "jsdom": "^28.1.0",
     "mocha": "^11.7.5",
     "npm-check-updates": "npm:npm-check-updates",

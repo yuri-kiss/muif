@@ -1,0 +1,8 @@
+{
+  "[javascript]": {
+    "editor.maxTokenizationLineLength": 2500,
+    "js/ts.validate.enabled": false,
+    "js/ts.format.enabled": false,
+    "js/ts.preferences.quoteStyle": "single",
+  },
+}

@@ -1,0 +1,10 @@
+{
+  "env": [
+    "node",
+    "dom",
+    "bom",
+    "intl",
+    "cssom",
+    "indexeddb"
+  ]
+}

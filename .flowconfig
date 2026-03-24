@@ -1,0 +1,10 @@
+[include]
+src/**/*
+src/.*
+
+[ignore]
+./.*
+test/.*
+.*/node_modules/.*
+.*/build/.*
+.*/dist/.*

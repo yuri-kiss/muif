@@ -98,6 +98,7 @@ module.exports = (_env, _argv) => {
                     `firefox >= 68`,
                   ],
                 }],
+                ['@babel/preset-flow'],
               ],
               plugins: [
                 ['transform-define', Object.assign(
@@ -108,6 +109,7 @@ module.exports = (_env, _argv) => {
                     'muif.process_env_NOGOOG':  'true',
                   } : {},
                 )],
+                ['babel-plugin-syntax-hermes-parser'],
               ],
             },
           },
