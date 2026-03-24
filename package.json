@@ -72,6 +72,7 @@
     "yarn": "^1.22.22"
   },
   "dependencies": {
-    "google-closure-library": "npm:google-closure-library"
+    "google-closure-library": "npm:google-closure-library",
+    "lodash-es": "^4.17.23"
   }
 }
