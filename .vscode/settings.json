@@ -1,0 +1,10 @@
+{
+  "flow.enabled": false,
+  "flow.showStatus": false,
+  "flow.showUncovered": false,
+
+
+  "js/ts.format.enabled": false,
+  "js/ts.validate.enabled": true,
+}
+
