@@ -57,6 +57,5 @@ module.exports = (goog) => {
     'Replacer',
     'Reviver',
     'Serializer',
-    'isValid'
   ]);
 };
