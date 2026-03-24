@@ -7,8 +7,8 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
 
   // Raw require function: uses the raw-loader when in Webpack and NodeFS otherwise.
   const muif$closureloader$rrequire = muif.process_env_WEBPACK ? (() => {
-    const ctx = require.context('!!raw-loader!../../../node_modules/google-closure-library/closure/goog/', true, /(^(?!.*(?=(bootstrap)|(test))))(.+)(\.js$)/);
-    const ctx2 = require.context('!!raw-loader!../../../node_modules/google-closure-library/third_party', true, /\.js$/)
+    const ctx = require.context('!!raw-loader?esModule=false!../../../node_modules/google-closure-library/closure/goog/', true, /(^(?!.*(?=(bootstrap)|(test))))(.+)(\.js$)/);
+    const ctx2 = require.context('!!raw-loader?esModule=false!../../../node_modules/google-closure-library/third_party', true, /\.js$/)
 
     return (module) => {
       if (module.startsWith('./../../third_party')) {
@@ -75,7 +75,7 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
       for (let j = 0; j < muif$closureloader$stack_[muif$closureloader$modul][1].length; ++j) {
         muif$closureloader$req(muif$closureloader$stack_[muif$closureloader$modul][1][j]);
         if (!muif$closureloader$loaded_.has(muif$closureloader$stack_[muif$closureloader$stack_[muif$closureloader$modul][1][j]][0])) {
-          // muif.lib.es.console.log('muif/goog failed to load dependency %s', muif$closureloader$stack_[muif$closureloader$modul][1][j]);          
+          // muif.lib.es.console.log('muif/goog failed to load dependency %s', muif$closureloader$stack_[muif$closureloader$modul][1][j]);
           return;
         }
       }

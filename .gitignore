@@ -2,3 +2,6 @@ node_modules/
 # Testing files
 /test.cjs
 /bundle.js
+# Build files
+build/
+dist/

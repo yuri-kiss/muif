@@ -18,7 +18,6 @@ To build the project run `yarn run build` to build for development, run `yarn ru
 
 ### TODO
 
-- Actually add a build cycle
 - ESLINT
 - Prettier
 
