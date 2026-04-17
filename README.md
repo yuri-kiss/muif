@@ -19,7 +19,6 @@ To build the project run `yarn run build` to build for development, run `yarn ru
 ### TODO
 
 - ESLINT
-- Prettier
 
 ## License
 

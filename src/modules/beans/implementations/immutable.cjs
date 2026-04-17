@@ -3,9 +3,9 @@
  * @module muif/beans/immutable
  */
 
-const {lockns} = require('../../../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../../../lib/ns.cjs').create(module, exports);
 
-const {InstanceBean, BeanSecret, constructInstanceBean} = require('../instance.cjs');
+const { InstanceBean, BeanSecret, constructInstanceBean } = require('../instance.cjs');
 
 /**
  * Bean that is immutable.
@@ -36,11 +36,7 @@ class ImmutableBean extends InstanceBean {
    * @protected
    */
   _IDNUOYWBF_clone(makeMutable, ignoreImmutability) {
-    const next = constructInstanceBean(
-      ImmutableBean,
-      /** @type {BeanValueType} */(this.getValue()),
-      this.hasValue(),
-    );
+    const next = constructInstanceBean(ImmutableBean, /** @type {BeanValueType} */ (this.getValue()), this.hasValue());
     if (makeMutable) {
       if (!ignoreImmutability) {
         console.debug('Bean in question:', bean);
@@ -63,7 +59,7 @@ class ImmutableBean extends InstanceBean {
     const next = this._IDNUOYWBF_clone(true, true);
     next[BeanSecret].immutable = true;
     next[BeanSecret].hasValue = false;
-    next[BeanSecret].value = (void 0);
+    next[BeanSecret].value = void 0;
     this._IDNUOYWBF_dispatchChange(next, this.getValue());
     return next;
   }

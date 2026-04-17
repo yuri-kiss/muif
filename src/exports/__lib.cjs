@@ -5,7 +5,7 @@
 
 var muif = {}; // THIS IS A STUB TO FIX BUILD ERRORS.
 
-const {lockns} = require('../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../lib/ns.cjs').create(module, exports);
 
 exports.ns = require('../lib/ns.cjs');
 exports.lnullj = require('../lib/lnullj.cjs');

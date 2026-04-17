@@ -3,7 +3,7 @@
  * @module muif
  */
 
-const {lockns} = require('../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../lib/ns.cjs').create(module, exports);
 
 exports.lib = require('./__lib.cjs');
 

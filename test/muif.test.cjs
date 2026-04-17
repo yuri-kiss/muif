@@ -12,19 +12,15 @@ describe('muiflib', () => {
   describe('muif', () => {
     beforeEach(() => delete global.muif);
 
-    it('requiring the pure version of the library keeps global scope clean?',
-      () => {
-          require('../src/pure.cjs');
-          chai.expect(global.muif).equals(undefined, 'pure version of the library polluted the global scope');
-      }
-      );
+    it('requiring the pure version of the library keeps global scope clean?', () => {
+      require('../src/pure.cjs');
+      chai.expect(global.muif).equals(undefined, 'pure version of the library polluted the global scope');
+    });
 
-    it('requiring the normal version of the library exposes a copy of the library?',
-      () => {
-          const $muif = require('../src/index.cjs');
+    it('requiring the normal version of the library exposes a copy of the library?', () => {
+      const $muif = require('../src/index.cjs');
 
-          chai.expect(global.muif).equals($muif,     'normal version of the library did not pollute the global scope');
-      }
-      );
+      chai.expect(global.muif).equals($muif, 'normal version of the library did not pollute the global scope');
+    });
   });
 });

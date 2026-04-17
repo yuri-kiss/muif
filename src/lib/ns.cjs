@@ -20,9 +20,7 @@ const lnullj = require('./lnullj.cjs');
  *
  * @property {typeof lnullj} lnullj
  * @property {typeof T_es} es
- */;
-
-ns.create = /** @param {INamespaceHandle_module} modul3 @returns {INamespaceHandle} */(modul3, export$) => {
+ */ ns.create = /** @param {INamespaceHandle_module} modul3 @returns {INamespaceHandle} */ (modul3, export$) => {
   modul3.exports = export$;
   return {
     lockns: () => {

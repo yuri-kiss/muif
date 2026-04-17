@@ -4,13 +4,13 @@
  * This is just the following vvvv but modified to work in this library.
  * https://github.com/Unsandboxed/scratch-blocks/blob/c415c0cb6f763d606b1795e564cb7702375229cd/core/polypatch.js
  */
-const {goog} = require('./goog.cjs');
+const { goog } = require('./goog.cjs');
 
 /**
  * @fileoverview Fix up some polyfill's and stuff :)
  * @author yri5@duck.com (Miyo Sho)
  */
-'use strict';
+('use strict');
 
 /* eslint-disable no-undef */
 
@@ -28,8 +28,8 @@ goog.polypatch = true;
  * Checks if a value is a safe callable function.
  * @returns {boolean}
  */
-goog.isSafeFunction = function(value) {
-  return (goog.typeOf(value) == 'function') && goog.isDef(value.call);
+goog.isSafeFunction = function (value) {
+  return goog.typeOf(value) == 'function' && goog.isDef(value.call);
 };
 
 // Allow transparent hex codes
@@ -50,26 +50,17 @@ if (goog.isSafeFunction(Array.from)) goog.array.toArray = Array.from;
    When the value is not an array, length is not a number
   or the array length is not the same as length.
 */
-goog.asserts.assertAtLeastLength = function(value, length, opt_message, var_args) {
+goog.asserts.assertAtLeastLength = function (value, length, opt_message, var_args) {
   if (goog.asserts.ENABLE_ASSERTS && !goog.isArray(value)) {
     if (!goog.isArrayLike(value)) {
-      goog.asserts.doAssertFailure_(
-        'Expected array-like but got %s: %s.', [goog.typeOf(value), value],
-        opt_message, Array.prototype.slice.call(arguments, 2)
-      );
+      goog.asserts.doAssertFailure_('Expected array-like but got %s: %s.', [goog.typeOf(value), value], opt_message, Array.prototype.slice.call(arguments, 2));
     }
     if (!goog.isNumber(length)) {
-      goog.asserts.doAssertFailure_(
-        'Expected number but got %s: %s.', [goog.typeOf(length), length],
-        opt_message, Array.prototype.slice.call(arguments, 2)
-      );
+      goog.asserts.doAssertFailure_('Expected number but got %s: %s.', [goog.typeOf(length), length], opt_message, Array.prototype.slice.call(arguments, 2));
     }
   }
   if (value.length >= length) return /** @type {!Array<?>} */ (value);
-  goog.asserts.doAssertFailure_(
-    'Expected array-like to be minimum length of %s but got: %s.', [length, value.length],
-    opt_message, Array.prototype.slice.call(arguments, 2)
-  );
+  goog.asserts.doAssertFailure_('Expected array-like to be minimum length of %s but got: %s.', [length, value.length], opt_message, Array.prototype.slice.call(arguments, 2));
 };
 
 // Polyfill queueMicrotask
@@ -77,7 +68,7 @@ if (goog.isSafeFunction(goog.global.queueMicrotask)) {
   goog.queueMicrotask = goog.global.queueMicrotask.bind(goog.global);
 } else {
   // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#microtask-queuing
-  goog.queueMicrotask = function(task) {
+  goog.queueMicrotask = function (task) {
     goog.asserts.assertAtLeastLength(arguments, 1, 'Window.queueMicrotask: At least 1 argument required, but only 0 passed', arguments.length);
     goog.asserts.assertObject(task, 'Window.queueMicrotask: Argument 1 is not an object.');
     goog.asserts.assertFunction(task, 'Window.queueMicrotask: Argument 1 is not callable.');
@@ -85,15 +76,19 @@ if (goog.isSafeFunction(goog.global.queueMicrotask)) {
   };
   // More modern browsers
   if (goog.isDef(goog.global.Promise)) {
-    goog.queueMicrotask.now = function(task){
-      return goog.global.Promise.resolve().then(task).catch(function(error) {
-        setTimeout(() => { throw error; }, 0);
-      });
+    goog.queueMicrotask.now = function (task) {
+      return goog.global.Promise.resolve()
+        .then(task)
+        .catch(function (error) {
+          setTimeout(() => {
+            throw error;
+          }, 0);
+        });
     };
   } else if (goog.isDef(goog.global.MutationObserver)) {
     goog.queueMicrotask.now = (task) => {
       // MutationObserver's also queueMicrotask's and are supported in older browsers.
-      var queue = new MutationObserver(function() {
+      var queue = new MutationObserver(function () {
         task();
         queue.disconnect();
       });
@@ -103,7 +98,7 @@ if (goog.isSafeFunction(goog.global.queueMicrotask)) {
     };
   } else {
     console.warn('Unable to find queueMicrotask fallback, using slower alternative.');
-    goog.queueMicrotask.now = function(task) {
+    goog.queueMicrotask.now = function (task) {
       setTimeout(task, 0);
     };
   }

@@ -3,8 +3,8 @@
  * @module muif/beans/bindings/math
  */
 
-const {lockns} = require('../../../lib/ns.cjs').create(module, exports);
-const {MutableBean} = require('../implementations/mutable.cjs');
+const { lockns } = require('../../../lib/ns.cjs').create(module, exports);
+const { MutableBean } = require('../implementations/mutable.cjs');
 
 /**
  * Bean version of `? :`.

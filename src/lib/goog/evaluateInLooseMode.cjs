@@ -11,6 +11,6 @@ if (muif.process_env_WEBPACK) {
   };
   module.exports = muif$closureloader$evaluateInLooseMode;
 } else {
-  const muif$closureloader$evaluateInLooseMode = (code) => void require(/* webpackIgnore: true */'vm').runInThisContext.call(globalThis, code, '');
+  const muif$closureloader$evaluateInLooseMode = (code) => void require(/* webpackIgnore: true */ 'vm').runInThisContext.call(globalThis, code, '');
   module.exports = muif$closureloader$evaluateInLooseMode;
 }

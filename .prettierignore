@@ -1,0 +1,15 @@
+node_modules/
+flow-typed/
+# Testing files
+/test.cjs
+/bundle.js
+# Build files
+build/
+dist/
+
+# Non-code files
+.vscode/
+/.mocharc.yaml
+/package.json
+/yarn.lock
+/tsconfig.json
