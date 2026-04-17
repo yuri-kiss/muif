@@ -26,15 +26,15 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
     muif$closureloader$rrequire('./base.js')['default'],
     true,
   );
-  const goog = muif.lib.es.global.goog;
+  const goog = globalThis.goog;
 
-  const hasDocument = !!muif.lib.es.global.document;
-  if (!muif.lib.es.global.window) {
+  const hasDocument = !!globalThis.document;
+  if (!globalThis.window) {
     const jsdom = require(/* webpackIgnore: true */'jsdom');
 
     const window = (new jsdom.JSDOM()).window;
-    muif.lib.es.global.window = window;
-    muif.lib.es.global.document = window.document;
+    globalThis.window = window;
+    globalThis.document = window.document;
   }
 
   const oldUA = navigator.userAgent;
@@ -51,7 +51,7 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
   {
     const muif$closureloader$stack_ = {}, muif$closureloader$loaded_ = new Set([]);
 
-    // muif.lib.es.console.log(muif$closureloader$stack_);
+    // console.log(muif$closureloader$stack_);
 
     const goog$addDependency = goog.addDependency;
     goog.addDependency = (file, provides, requires, extra) => {
@@ -71,11 +71,11 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
           return;
         }
       };
-      // muif.lib.es.console.log('muif/goog loading %s', muif$closureloader$modul);
+      // console.log('muif/goog loading %s', muif$closureloader$modul);
       for (let j = 0; j < muif$closureloader$stack_[muif$closureloader$modul][1].length; ++j) {
         muif$closureloader$req(muif$closureloader$stack_[muif$closureloader$modul][1][j]);
         if (!muif$closureloader$loaded_.has(muif$closureloader$stack_[muif$closureloader$stack_[muif$closureloader$modul][1][j]][0])) {
-          // muif.lib.es.console.log('muif/goog failed to load dependency %s', muif$closureloader$stack_[muif$closureloader$modul][1][j]);
+          // console.log('muif/goog failed to load dependency %s', muif$closureloader$stack_[muif$closureloader$modul][1][j]);
           return;
         }
       }
@@ -118,12 +118,10 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
 const goog = exports.goog = {};
 module.exports = exports;
 
-const {global, console, defineBadExports} = muif.lib.es;
-
 // This file is just for defining top level compatibility values and simple 1 to 1 maps of functions.
 // The lib/goog/goog.cjs file contains the extra code unrelated to things like that.
 
-goog.global = global;
+goog.global = globalThis;
 
 goog.typeOf = muif.types.extendedTypeOf;
 goog.isString = muif.types.is.isString;

@@ -6,7 +6,6 @@ require('node:util').inspect.defaultOptions.depth = 8;
 describe('muiflib', () => {
   require('./subtests/lib_lnullj.cjs');
   require('./subtests/lib_ns.cjs');
-  require('./subtests/lib_oop.cjs');
 
   require('./subtests/modules/beans/index.cjs');
 

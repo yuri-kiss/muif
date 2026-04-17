@@ -3,7 +3,7 @@
  * @module muif/types/is
  */
 
-const {lockns, lnullj, es: { Symbol }} = require('../../lib/ns.cjs').create(module, exports);
+const {lockns, lnullj} = require('../../lib/ns.cjs').create(module, exports);
 
 exports.isNull = /** @param {unknown} value @returns {boolean} */(value) => (
   value === lnullj.NULL
