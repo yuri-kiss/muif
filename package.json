@@ -45,11 +45,10 @@
     "build:dev": "yarn run build"
   },
   "sideeffects": [],
-  "peerDependencies": {
-    "core-js-pure": "^3.48.0"
-  },
   "devDependencies": {
+    "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",
+    "@babel/plugin-transform-runtime": "^7.29.0",
     "@babel/preset-env": "^7.29.2",
     "@swc/core": "^1.15.21",
     "@types/node": "^25.5.0",
@@ -72,6 +71,8 @@
     "yarn": "^1.22.22"
   },
   "dependencies": {
-    "google-closure-library": "npm:google-closure-library"
+    "@babel/runtime-corejs3": "^7.29.2",
+    "google-closure-library": "npm:google-closure-library",
+    "regenerator-runtime": "^0.14.1"
   }
 }

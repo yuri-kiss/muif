@@ -8,12 +8,6 @@
  */
 const ns = {};
 
-const Object$assign = require('core-js-pure/es/object/assign');
-const Object$setPrototypeOf = require('core-js-pure/es/object/set-prototype-of');
-const Object$getPrototypeOf = require('core-js-pure/es/object/get-prototype-of');
-const Object$freeze = require('core-js-pure/es/object/freeze');
-const JSON$parse = require('core-js-pure/es/json/parse');
-
 ns.UNDF = (void 0);
 ns.NULL = (typeof null === 'object' && null == ns.UNDF) ? null : JSON$parse('null');
 
@@ -29,14 +23,14 @@ ns.create = /** @template {object & {}} T @param {?T} [props] @returns {!T} */(p
   );
 };
 ns.assign = /** @template {object & {}} T @param {!T} object @returns {!T & {}} */(object) => (
-  Object$assign(ns.create(), object)
+  Object.assign(ns.create(), object)
 );
 ns.is = /** @param {unknown} @returns {boolean} */(object) => (
-  object != ns.UNDF && Object$getPrototypeOf(object) === ns.NULL
+  object != ns.UNDF && Object.getPrototypeOf(object) === ns.NULL
 );
 
 ns.lock = /** @template {object & {}} T @param {!T} object @returns {!T} */(object) => /** @type {!T} */(
-  Object$freeze(Object$setPrototypeOf(object, ns.NULL))
+  Object.freeze(Object.setPrototypeOf(object, ns.NULL))
 );
 
 ns.lock(ns);

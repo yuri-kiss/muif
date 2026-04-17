@@ -1,5 +1,4 @@
 const muif = require('../../pure.cjs');
-const global = require('../es/globalThis.cjs');
 
 if (muif.process_env_WEBPACK) {
   const muif$closureloader$evaluateInLooseMode = (code, globally) => {
@@ -7,11 +6,11 @@ if (muif.process_env_WEBPACK) {
     script.setAttribute('type', 'text/javascript');
     script.textContent = `(this || self).muif$closureloader$evaluateInLooseMode = () => (0, void ${globally ? '(this || self).' : ''}eval(${JSON.stringify(code)}));`;
     document.body.appendChild(script);
-    global.muif$closureloader$evaluateInLooseMode();
-    delete global.muif$closureloader$evaluateInLooseMode;
+    globalThis.muif$closureloader$evaluateInLooseMode();
+    delete globalThis.muif$closureloader$evaluateInLooseMode;
   };
   module.exports = muif$closureloader$evaluateInLooseMode;
 } else {
-  const muif$closureloader$evaluateInLooseMode = (code) => void require(/* webpackIgnore: true */'vm').runInThisContext.call(global, code, '');
+  const muif$closureloader$evaluateInLooseMode = (code) => void require(/* webpackIgnore: true */'vm').runInThisContext.call(globalThis, code, '');
   module.exports = muif$closureloader$evaluateInLooseMode;
 }
