@@ -20,6 +20,7 @@
     "declaration": false,
     "outDir": "./dist",
     "moduleResolution": "bundler",
+    "downlevelIteration": true,
   },
   "include": [
     "./src/**/*",
