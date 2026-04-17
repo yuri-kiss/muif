@@ -39,7 +39,7 @@
   },
   "license": "LGPL-2.1-only",
   "type": "commonjs",
-  "main": "./src/pure.cjs",
+  "main": "./dist/node.umd.min.js",
   "browser": "./dist/browser.umd.min.js",
   "scripts": {
     "test": "cross-env mocha",
