@@ -9,7 +9,15 @@ module.exports = (goog) => {
     return remainder;
   };
 
-  ns.clamp = lodash.clamp;
+  ns.clamp = (low, high, num) => {
+    if (high < low) {
+      const temp = high;
+      high = low;
+      low = temp;
+    }
+
+    return Math.min(Math.max(low, num), high);
+  };
   ns.lerp = (x, y, l) => (
     x + (l * (y - x))
   );
