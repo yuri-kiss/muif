@@ -3,7 +3,7 @@
  * @module muif/beans/__bindings
  */
 
-const {lockns} = require('../../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../../lib/ns.cjs').create(module, exports);
 
 // Bean bindings.
 

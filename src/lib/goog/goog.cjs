@@ -4,54 +4,52 @@ const muif = require('../../pure.cjs');
 const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cjs');
 
 {
-
   // Raw require function: uses the raw-loader when in Webpack and NodeFS otherwise.
-  const muif$closureloader$rrequire = muif.process_env_WEBPACK ? (() => {
-    const ctx = require.context('!!raw-loader?esModule=false!../../../node_modules/google-closure-library/closure/goog/', true, /(^(?!.*(?=(bootstrap)|(test))))(.+)(\.js$)/);
-    const ctx2 = require.context('!!raw-loader?esModule=false!../../../node_modules/google-closure-library/third_party', true, /\.js$/)
+  const muif$closureloader$rrequire = muif.process_env_WEBPACK
+    ? (() => {
+        const ctx = require.context('!!raw-loader?esModule=false!../../../node_modules/google-closure-library/closure/goog/', true, /(^(?!.*(?=(bootstrap)|(test))))(.+)(\.js$)/);
+        const ctx2 = require.context('!!raw-loader?esModule=false!../../../node_modules/google-closure-library/third_party', true, /\.js$/);
 
-    return (module) => {
-      if (module.startsWith('./../../third_party')) {
-        return ctx2(module.replace('../../third_party/', ''));
-      }
-      return ctx(module);
-    };
-  })() : ((module) => {
-    return {'default': require(/* webpackIgnore: true */'fs').readFileSync(require.resolve(module.replace('./', 'google-closure-library/closure/goog/'))).toString()};
-  });
+        return (module) => {
+          if (module.startsWith('./../../third_party')) {
+            return ctx2(module.replace('../../third_party/', ''));
+          }
+          return ctx(module);
+        };
+      })()
+    : (module) => {
+        return {
+          default: require(/* webpackIgnore: true */ 'fs')
+            .readFileSync(require.resolve(module.replace('./', 'google-closure-library/closure/goog/')))
+            .toString(),
+        };
+      };
 
   // The default file uses a weird bootstrap that wont work as it uses NodeJS specific modules,
   // to get around this we can manually load the base.js file and its dependancies.
-  muif$closureloader$evaluateInLooseMode(
-    muif$closureloader$rrequire('./base.js')['default'],
-    true,
-  );
-  const goog = muif.lib.es.global.goog;
+  muif$closureloader$evaluateInLooseMode(muif$closureloader$rrequire('./base.js')['default'], true);
+  const goog = globalThis.goog;
 
-  const hasDocument = !!muif.lib.es.global.document;
-  if (!muif.lib.es.global.window) {
-    const jsdom = require(/* webpackIgnore: true */'jsdom');
+  const hasDocument = !!globalThis.document;
+  if (!globalThis.window) {
+    const jsdom = require(/* webpackIgnore: true */ 'jsdom');
 
-    const window = (new jsdom.JSDOM()).window;
-    muif.lib.es.global.window = window;
-    muif.lib.es.global.document = window.document;
+    const window = new jsdom.JSDOM().window;
+    globalThis.window = window;
+    globalThis.document = window.document;
   }
 
   const oldUA = navigator.userAgent;
   if (!oldUA || navigator.userAgent.startsWith('Node.js')) {
     delete navigator.userAgent;
-    Object.defineProperty(navigator, 'userAgent', {
-      value: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows CE; Trident/3.1)',
-      writable: false,
-      enumerable: true,
-      configurable: true,
-    });
+    Object.defineProperty(navigator, 'userAgent', { value: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows CE; Trident/3.1)', writable: false, enumerable: true, configurable: true });
   }
 
   {
-    const muif$closureloader$stack_ = {}, muif$closureloader$loaded_ = new Set([]);
+    const muif$closureloader$stack_ = {},
+      muif$closureloader$loaded_ = new Set([]);
 
-    // muif.lib.es.console.log(muif$closureloader$stack_);
+    // console.log(muif$closureloader$stack_);
 
     const goog$addDependency = goog.addDependency;
     goog.addDependency = (file, provides, requires, extra) => {
@@ -70,12 +68,12 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
           muif$closureloader$loaded_.add(muif$closureloader$stack_[muif$closureloader$modul][0]);
           return;
         }
-      };
-      // muif.lib.es.console.log('muif/goog loading %s', muif$closureloader$modul);
+      }
+      // console.log('muif/goog loading %s', muif$closureloader$modul);
       for (let j = 0; j < muif$closureloader$stack_[muif$closureloader$modul][1].length; ++j) {
         muif$closureloader$req(muif$closureloader$stack_[muif$closureloader$modul][1][j]);
         if (!muif$closureloader$loaded_.has(muif$closureloader$stack_[muif$closureloader$stack_[muif$closureloader$modul][1][j]][0])) {
-          // muif.lib.es.console.log('muif/goog failed to load dependency %s', muif$closureloader$stack_[muif$closureloader$modul][1][j]);
+          // console.log('muif/goog failed to load dependency %s', muif$closureloader$stack_[muif$closureloader$modul][1][j]);
           return;
         }
       }
@@ -84,14 +82,10 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
       const src = muif$closureloader$rrequire(`./${muif$closureloader$stack_[muif$closureloader$modul][0]}`)['default'];
       muif$closureloader$evaluateInLooseMode(
         `${
-          hasDocument
-            ? `;document.scripts.item(document.scripts.length - 1).dataset.googModule=${JSON.stringify(muif$closureloader$modul)};`
-            : ''
+          hasDocument ? `;document.scripts.item(document.scripts.length - 1).dataset.googModule=${JSON.stringify(muif$closureloader$modul)};` : ''
         }${isModule ? 'goog.loadModule(function(exports){"use strict";' : ''}\n${src}\n${isModule ? ';return exports;});' : ''}${
-          hasDocument
-            ? `;document.scripts.item(document.scripts.length - 1).remove();`
-            : ''
-        }`
+          hasDocument ? `;document.scripts.item(document.scripts.length - 1).remove();` : ''
+        }`,
       );
     };
 
@@ -99,31 +93,24 @@ const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cj
     for (let i = 0; i < muif$closureloader$modules_.length; ++i) {
       muif$closureloader$req(muif$closureloader$modules_[i]);
     }
-  };
+  }
 
   if (oldUA !== navigator.userAgent) {
     delete navigator.userAgent;
-    Object.defineProperty(navigator, 'userAgent', {
-      value: oldUA,
-      writable: false,
-      enumerable: true,
-      configurable: true,
-    });
+    Object.defineProperty(navigator, 'userAgent', { value: oldUA, writable: false, enumerable: true, configurable: true });
   }
 
   exports.closureLibrary_ = goog;
-};
+}
 
 // Redefine the "goog" variable as the closure library would have overwritten it with its implementations by now.
-const goog = exports.goog = {};
+const goog = (exports.goog = {});
 module.exports = exports;
-
-const {global, console, defineBadExports} = muif.lib.es;
 
 // This file is just for defining top level compatibility values and simple 1 to 1 maps of functions.
 // The lib/goog/goog.cjs file contains the extra code unrelated to things like that.
 
-goog.global = global;
+goog.global = globalThis;
 
 goog.typeOf = muif.types.extendedTypeOf;
 goog.isString = muif.types.is.isString;
@@ -140,7 +127,7 @@ goog.isDateLike = muif.types.is.isDateLike;
 
 goog.now = () => goog.global.Date.now();
 
-goog.nullFunction = () => (void 0);
+goog.nullFunction = () => void 0;
 
 // NOTE: Removed in later versions but some stuff might still use it.
 goog.mixin = (child, parent) => {

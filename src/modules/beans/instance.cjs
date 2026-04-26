@@ -3,9 +3,9 @@
  * @module muif/beans/instance
  */
 
-const {lockns, es: { console }} = require('../../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../../lib/ns.cjs').create(module, exports);
 
-const {VirtualBean, BeanSecret} = require('./virtual.cjs');
+const { VirtualBean, BeanSecret } = require('./virtual.cjs');
 
 /**
  * Extended event listener options.
@@ -18,37 +18,35 @@ const {VirtualBean, BeanSecret} = require('./virtual.cjs');
  * @internal
  * @ignore
  */
- /**
-  * Event listener passed event object.
-  *
-  * @template BeanType
-  * @template BeanTypeValue
-  *
-  * @typedef {Object} EventListenerCallbackEvent
-  *
-  * @property {BeanType} nextBean The next bean.
-  * @property {BeanType} oldBean The old bean.
-  *
-  * @property {BeanTypeValue | undefined} nextValue The next value for this beann.
-  * @property {BeanTypeValue | undefined} oldValue The old value for this bean.
-  *
-  * @public
-  */
- /**
-  * Event listener function.
-  *
-  * @template BeanType
-  * @template BeanTypeValue
-  *
-  * @callback InstanceBeanEventListener
-  *
-  * @param {EventListenerCallbackEvent<BeanType, BeanTypeValue>} event The event (type casted from a real Event).
-  * @returns {void}
-  *
-  * @public
-  */;
-
 /**
+ * Event listener passed event object.
+ *
+ * @template BeanType
+ * @template BeanTypeValue
+ *
+ * @typedef {Object} EventListenerCallbackEvent
+ *
+ * @property {BeanType} nextBean The next bean.
+ * @property {BeanType} oldBean The old bean.
+ *
+ * @property {BeanTypeValue | undefined} nextValue The next value for this beann.
+ * @property {BeanTypeValue | undefined} oldValue The old value for this bean.
+ *
+ * @public
+ */
+/**
+ * Event listener function.
+ *
+ * @template BeanType
+ * @template BeanTypeValue
+ *
+ * @callback InstanceBeanEventListener
+ *
+ * @param {EventListenerCallbackEvent<BeanType, BeanTypeValue>} event The event (type casted from a real Event).
+ * @returns {void}
+ *
+ * @public
+ */ /**
  * Constructs a bean.
  *
  * @template BeanTypeValue
@@ -154,12 +152,7 @@ class InstanceBean extends VirtualBean {
       return;
     }
 
-    this._evT.removeEventListener(
-      'change',
-      fn,
-      /*options*/this._evM.get(fn),
-      /*wantsUntrusted*/true,
-    );
+    this._evT.removeEventListener('change', fn, /*options*/ this._evM.get(fn), /*wantsUntrusted*/ true);
     this._evM.delete(fn);
   }
   /**
@@ -180,22 +173,12 @@ class InstanceBean extends VirtualBean {
      * @type {EventListenerCallbackEvent<BeanType, BeanTypeValue>}
      */
     var x = {};
-    x
+    x;
 
     const doOnce = !!(once ?? false);
 
-    this._evM.set(fn, {
-      capture: true,
-      once: doOnce,
-      passive: true,
-      fn: fn,
-    });
-    this._evT.addEventListener(
-      'change',
-      fn,
-      /*options*/this._evM.get(fn),
-      /*wantsUntrusted*/true,
-    );
+    this._evM.set(fn, { capture: true, once: doOnce, passive: true, fn: fn });
+    this._evT.addEventListener('change', fn, /*options*/ this._evM.get(fn), /*wantsUntrusted*/ true);
 
     if (!doOnce) {
       return;
@@ -204,28 +187,14 @@ class InstanceBean extends VirtualBean {
     // If we only run this handler once we should add another to clean-up the mess left in the event map.
     const removalListener = () => {
       this.removeListener(fn);
-      this._evT.removeEventListener(
-        'change',
-        removalListener,
-        /*options*/removalListener.options,
-        /*wantsUntrusted*/true,
-      );
+      this._evT.removeEventListener('change', removalListener, /*options*/ removalListener.options, /*wantsUntrusted*/ true);
     };
     /**
      * @type {Readonly<EventListenerOptionsPlus>}
      */
-    removalListener.options = {
-      capture: true,
-      once: true,
-      passive: true,
-    };
+    removalListener.options = { capture: true, once: true, passive: true };
 
-    this._evT.addEventListener(
-      'change',
-      removalListener,
-      /*options*/removalListener.options,
-      /*wantsUntrusted*/true,
-    );
+    this._evT.addEventListener('change', removalListener, /*options*/ removalListener.options, /*wantsUntrusted*/ true);
   }
 
   /**
@@ -239,7 +208,10 @@ class InstanceBean extends VirtualBean {
    */
   clone() {
     if (this.isReadOnly() && !this.isImmutable()) {
-      console.warn(this, 'Cloning a read-only bean will remove its read-only status, you should use the mutableClone method instead if you want that behaviour otherwise you shouldn\'t clone a read-only bean.');
+      console.warn(
+        this,
+        "Cloning a read-only bean will remove its read-only status, you should use the mutableClone method instead if you want that behaviour otherwise you shouldn't clone a read-only bean.",
+      );
     }
     return this._IDNUOYWBF_clone(false, false);
   }

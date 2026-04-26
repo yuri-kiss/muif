@@ -3,9 +3,9 @@
  * @module muif/beans/readonly
  */
 
-const {lockns, es: { console }} = require('../../../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../../../lib/ns.cjs').create(module, exports);
 
-const {InstanceBean, BeanSecret, constructInstanceBean} = require('../instance.cjs');
+const { InstanceBean, BeanSecret, constructInstanceBean } = require('../instance.cjs');
 
 /**
  * Bean that is read-only.
@@ -42,11 +42,7 @@ class ReadOnlyBean extends InstanceBean {
     if (!ignoreImmutability && !makeMutable) {
       console.warn(this, 'Cloning a read-only bean without making it mutable is useless.');
     }
-    return constructInstanceBean(
-      ReadOnlyBean,
-      /** @type {BeanValueType} */(this.getValue()),
-      this.hasValue(),
-    );
+    return constructInstanceBean(ReadOnlyBean, /** @type {BeanValueType} */ (this.getValue()), this.hasValue());
   }
 
   /**

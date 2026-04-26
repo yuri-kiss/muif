@@ -1,8 +1,8 @@
-const {defineBadExports} = require('../__es.cjs');
+const { defineBadExports } = require('../__es.cjs');
 const JSON = require('../es/JSON.cjs');
 
 module.exports = (goog) => {
-  const ns = goog.json = {};
+  const ns = (goog.json = {});
 
   ns.errorLogger_ = goog.nullFunction;
   ns.setErrorLogger = goog.nullFunction;
@@ -42,15 +42,11 @@ module.exports = (goog) => {
 
     // Don't make these static since they have the global flag.
     const backslashesRe = /\\["\\\/bfnrtu]/g;
-    const simpleValuesRe =
-        /(?:"[^"\\\n\r\u2028\u2029\x00-\x08\x0a-\x1f]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)[\s\u2028\u2029]*(?=:|,|]|}|$)/g;
+    const simpleValuesRe = /(?:"[^"\\\n\r\u2028\u2029\x00-\x08\x0a-\x1f]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)[\s\u2028\u2029]*(?=:|,|]|}|$)/g;
     const openBracketsRe = /(?:^|:|,)(?:[\s\u2028\u2029]*\[)+/g;
     const remainderRe = /^[\],:{}\s\u2028\u2029]*$/;
 
-    return remainderRe.test(
-        s.replace(backslashesRe, '@')
-            .replace(simpleValuesRe, ']')
-            .replace(openBracketsRe, ''));
+    return remainderRe.test(s.replace(backslashesRe, '@').replace(simpleValuesRe, ']').replace(openBracketsRe, ''));
   };
 
   defineBadExports(ns, 'goog.json', [

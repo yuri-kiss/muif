@@ -3,9 +3,9 @@
  * @module muif/beans/mutable
  */
 
-const {lockns} = require('../../../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../../../lib/ns.cjs').create(module, exports);
 
-const {InstanceBean, BeanSecret, constructInstanceBean} = require('../instance.cjs');
+const { InstanceBean, BeanSecret, constructInstanceBean } = require('../instance.cjs');
 
 /**
  * Bean that is mutable.
@@ -35,11 +35,7 @@ class MutableBean extends InstanceBean {
    * @protected
    */
   _IDNUOYWBF_clone(_makeMutable, _ignoreImmutability) {
-    return constructInstanceBean(
-      MutableBean,
-      /** @type {BeanValueType} */(this.getValue()),
-      this.hasValue(),
-    );
+    return constructInstanceBean(MutableBean, /** @type {BeanValueType} */ (this.getValue()), this.hasValue());
   }
 
   /**
@@ -76,7 +72,7 @@ class MutableBean extends InstanceBean {
   clearValue() {
     const oldValue = this.getValue();
     this[BeanSecret].hasValue = false;
-    this[BeanSecret].value = (void 0);
+    this[BeanSecret].value = void 0;
     this._IDNUOYWBF_dispatchChange(this, oldValue);
     return this;
   }

@@ -3,7 +3,7 @@
  * @module muif/beans/virtual
  */
 
-const {lockns, es: { console }} = require('../../lib/ns.cjs').create(module, exports);
+const { lockns } = require('../../lib/ns.cjs').create(module, exports);
 
 /**
  * Super secret internal bean configuration key.
@@ -11,7 +11,7 @@ const {lockns, es: { console }} = require('../../lib/ns.cjs').create(module, exp
  * @internal
  * @ignore
  */
-const BeanSecret = (`MiyoJLikeBeanLibrary._INTERNAL_DO_NOT_USE_OR_YOU_WILL_BE_FIRED_`);
+const BeanSecret = `MiyoJLikeBeanLibrary._INTERNAL_DO_NOT_USE_OR_YOU_WILL_BE_FIRED_`;
 
 /**
  * Internal bean config object.
@@ -54,7 +54,7 @@ class BeanConfig {
    *
    * @public
    */
-  value = (void 0);
+  value = void 0;
 }
 
 /**
@@ -70,15 +70,15 @@ class BeanConfig {
  * @internal
  * @ignore
  */
-const ReadSecret = (bean) => /** @type {BeanConfig} */(bean[BeanSecret]);
+const ReadSecret = (bean) => /** @type {BeanConfig} */ (bean[BeanSecret]);
 
- /**
-  * Main bean, containing the top most abstraction of the Bean API.
-  *
-  * @virtual
-  * @internal
-  * @ignore
-  */
+/**
+ * Main bean, containing the top most abstraction of the Bean API.
+ *
+ * @virtual
+ * @internal
+ * @ignore
+ */
 class VirtualBean {
   /**
    * @template BeanValueType

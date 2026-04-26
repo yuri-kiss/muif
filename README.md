@@ -19,7 +19,6 @@ To build the project run `yarn run build` to build for development, run `yarn ru
 ### TODO
 
 - ESLINT
-- Prettier
 
 ## License
 
@@ -43,3 +42,9 @@ To build the project run `yarn run build` to build for development, run `yarn ru
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, see <https://www.gnu.org/licenses/>.
 ```
+
+### Special thanks
+
+Special thanks to the folks at babel and corejs for making this project feasible and easy to work on.
+
+Also shout out to the people who made the closure library (my beloved).
