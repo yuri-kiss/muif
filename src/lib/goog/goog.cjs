@@ -182,8 +182,9 @@ goog.workaroundSafari10EvalBug = () => '';
 
 // Import submodules to finish off goog.
 // require('./log.cjs')(goog);
-require('./json.cjs')(goog);
+// require('./json.cjs')(goog);
 // require('./math.cjs')(goog);
+require('./reflect.cjs')(goog);
 
 const mapFromGoog = (props) => {
   for (let i = 0; i < props.length; ++i) {
