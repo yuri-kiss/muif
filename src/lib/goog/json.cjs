@@ -1,5 +1,4 @@
-const { defineBadExports } = require('../__es.cjs');
-const JSON = require('../es/JSON.cjs');
+const defineBadExports = require('./defineBadExports.cjs');
 
 module.exports = (goog) => {
   const ns = (goog.json = {});

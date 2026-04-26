@@ -1,6 +1,7 @@
 'use strict';
 
 const muif = require('../../pure.cjs');
+const defineBadExports = require('./defineBadExports.cjs');
 const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cjs');
 
 {
