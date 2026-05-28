@@ -6,3 +6,4 @@ flow-typed/
 # Build files
 build/
 dist/
+*.d.ts
