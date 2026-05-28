@@ -5,6 +5,8 @@
 
 const { lockns, lnullj } = require('../../lib/ns.cjs').create(module, exports);
 
+const Tuple = require('../../lib/tuple.cjs').Tuple;
+
 exports.isNull = /** @param {unknown} value @returns {boolean} */ (value) => value === lnullj.NULL;
 exports.isUndefined = /** @param {unknown} value @returns {boolean} */ (value) => value === lnullj.UNDF;
 exports.isNullish = lnullj.empty;
@@ -25,7 +27,8 @@ exports.isObjectGoog = /** @param {unknown} value @returns {boolean} */ (value) 
 exports.isObject = /** @param {unknown} value @returns {boolean} */ (value) => exports.isObjectLike(value) && !exports.isNull(value);
 exports.isArray = /** @param {unknown} value @returns {boolean} */ (value) => Array.isArray(value);
 exports.isArrayLike = /** @param {unknown} value @returns {boolean} */ (value) =>
-  exports.isArray(value) || (exports.isObject(value) && exports.isNumber(value.length) && value.length >= 0);
+  exports.isArray(value) || (exports.isObject(value) && exports.isNumber(value.length) && value.length >= 0 && value < 2 ** 31 - 1);
+exports.isTuple = /** @param {unknown} value @returns {boolean} */ (value) => Tuple.isTuple(value);
 
 exports.isLooseString = /** @param {unknown} value @returns {boolean} */ (value) => typeof value === 'string' || (!lnullj.empty(value) && value instanceof String);
 exports.isLooseBoolean = /** @param {unknown} value @returns {boolean} */ (value) => typeof value === 'boolean' || (!lnullj.empty(value) && value instanceof Boolean);
