@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (goog) => {
   // NOTE: This is only partially implemented.
   // @todo: Implement the rest of this when we have our own logger system.

@@ -1,3 +1,5 @@
+'use strict';
+
 const lnullj = require('../lnullj.cjs');
 const defineBadExports = (obj, title, exportList) => {
   for (let i = 0; i < exportList.length; ++i) {

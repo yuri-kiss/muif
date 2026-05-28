@@ -1,3 +1,5 @@
+'use strict';
+
 const defineBadExports = require('./defineBadExports.cjs');
 
 module.exports = (goog) => {

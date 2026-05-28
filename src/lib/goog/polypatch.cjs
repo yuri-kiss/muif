@@ -1,9 +1,5 @@
 'use strict';
 
-/**!
- * This is just the following vvvv but modified to work in this library.
- * https://github.com/Unsandboxed/scratch-blocks/blob/c415c0cb6f763d606b1795e564cb7702375229cd/core/polypatch.js
- */
 const { goog } = require('./goog.cjs');
 
 /**

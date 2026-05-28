@@ -1,6 +1,7 @@
-const lodash = require('../lodash.cjs');
+'use strict';
 
 module.exports = (goog) => {
+  // @todo: Implement the rest of this.
   const ns = goog.math = {};
 
   ns.modulo = (value, modulus) => {
