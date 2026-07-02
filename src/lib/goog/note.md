@@ -1,0 +1,1 @@
+a lot of the manual polyfills were made by fuzzing closure library for its inputs and conditions and also well the docs, this is mainly because I dislike the Apache 2.0 license but still want compatibility with the closure library.

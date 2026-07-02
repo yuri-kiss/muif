@@ -79,6 +79,7 @@
     "yarn": "^1.22.22"
   },
   "dependencies": {
+    "google-closure-library": "npm:google-closure-library",
     "@babel/runtime-corejs3": "^7.29.2",
     "google-closure-library": "npm:google-closure-library",
     "regenerator-runtime": "^0.14.1"

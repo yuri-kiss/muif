@@ -1,5 +1,6 @@
-const { defineBadExports } = require('../__es.cjs');
-const JSON = require('../es/JSON.cjs');
+'use strict';
+
+const defineBadExports = require('./defineBadExports.cjs');
 
 module.exports = (goog) => {
   const ns = (goog.json = {});
@@ -49,5 +50,9 @@ module.exports = (goog) => {
     return remainderRe.test(s.replace(backslashesRe, '@').replace(simpleValuesRe, ']').replace(openBracketsRe, ''));
   };
 
-  defineBadExports(ns, 'goog.json', ['Replacer', 'Reviver', 'Serializer', 'isValid']);
+  defineBadExports(ns, 'goog.json', [
+    'Replacer',
+    'Reviver',
+    'Serializer',
+  ]);
 };

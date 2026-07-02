@@ -1,2 +1,2 @@
-const muif = require('.');
-const closure = require('.').lib.closure();
+const muif = require('./src/pure.cjs');
+const closure = muif.lib.closure();

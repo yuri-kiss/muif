@@ -1,0 +1,27 @@
+'use strict';
+
+module.exports = (goog) => {
+  // @todo: Implement the rest of this.
+  const ns = goog.math = {};
+
+  ns.modulo = (value, modulus) => {
+    const remainder = value % modulus;
+    if ((remainder * modulus) < 0) return remainder + modulus;
+    return remainder;
+  };
+
+  ns.clamp = (low, high, num) => {
+    if (high < low) {
+      const temp = high;
+      high = low;
+      low = temp;
+    }
+
+    return Math.min(Math.max(low, num), high);
+  };
+  ns.lerp = (x, y, l) => (
+    x + (l * (y - x))
+  );
+  ns.standardAngle = (value) => ns.modulo(value, 360);
+  ns.nearlyEquals = (x, y, prec) => Math.abs(x - y) <= (prec || 0.000001);
+};

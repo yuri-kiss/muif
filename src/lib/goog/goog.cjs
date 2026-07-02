@@ -1,6 +1,7 @@
 'use strict';
 
 const muif = require('../../pure.cjs');
+const defineBadExports = require('./defineBadExports.cjs');
 const muif$closureloader$evaluateInLooseMode = require('./evaluateInLooseMode.cjs');
 
 {
@@ -148,7 +149,7 @@ goog.globalEval = (js) => muif$closureloader$evaluateInLooseMode(js);
 goog.LOCALE = 'en';
 goog.DEBUG = false;
 goog.TRUSTED_SITE = true;
-goog.STRICT_MODE_COMPATIBLE = true; // @todo: Update this with a real check.
+goog.STRICT_MODE_COMPATIBLE = true;
 goog.DISALLOW_TEST_ONLY_CODE = true;
 goog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING = false;
 goog.ENABLE_DEBUG_LOADER = false;
@@ -156,17 +157,22 @@ goog.LOAD_MODULE_USING_EVAL = false;
 goog.SEAL_MODULE_EXPORTS = true;
 goog.DEPENDENCIES_ENABLED = false;
 goog.TRANSPILE = false;
+goog.TRANSPILE_TO_LANGUAGE = '';
+goog.TRANSPILER = '';
 goog.ASSUME_ES_MODULES_TRANSPILED = true;
 goog.ASSUME_NATIVE_PROMISE = true;
 goog.NATIVE_ARRAY_PROTOTYPES = true;
 
-goog.hasBadLetScoping = null; // @todo: Update this with a real check.
-goog.useSafari10Workaround = () => goog.hasBadLetScoping; // @todo: Update this with a real check.
-goog.workaroundSafari10EvalBug = () => ''; // @todo: Update this with real code.
+// We don't support Safari 10.
+goog.hasBadLetScoping = false;
+goog.useSafari10Workaround = () => goog.hasBadLetScoping;
+goog.workaroundSafari10EvalBug = () => '';
 
 // Import submodules to finish off goog.
 // require('./log.cjs')(goog);
 // require('./json.cjs')(goog);
+// require('./math.cjs')(goog);
+require('./reflect.cjs')(goog);
 
 const mapFromGoog = (props) => {
   for (let i = 0; i < props.length; ++i) {
@@ -174,15 +180,13 @@ const mapFromGoog = (props) => {
   }
 };
 
-mapFromGoog(['log', 'json']);
+mapFromGoog(['log']);
 
-// defineBadExports(goog, 'goog', [
-mapFromGoog([
+defineBadExports(goog, 'goog', [
+// mapFromGoog([
   'isInModuleLoader_',
   'isInGoogModuleLoader_',
   'isInEs6ModuleLoader_',
-  'hasBadLetScoping', // @todo: Remove this when we have our own check.
-
   'exportPath_',
   'define',
   'provide',
@@ -207,9 +211,6 @@ mapFromGoog([
   'addSingletonGetter',
   'instantiatedSingletons',
   'loadedModules_',
-  'TRANSPILE_TO_LANGUAGE',
-  'TRANSPILER',
-  'workaroundSafari10EvalBug',
   'loadModule',
   'loadModuleFromSource_',
   'normalizePath_',
@@ -224,7 +225,6 @@ mapFromGoog([
   'removeHashCode',
   'bindNative_',
   'bindJs_',
-  'evalWorksForGlobals_',
   'getCssMame',
   'setCssNameMapping',
   'getMsg',
@@ -300,9 +300,6 @@ mapFromGoog([
   'url',
   'vec',
   'webgl',
-  // @todo: Implement the following.
-  'cloneObject',
-  'partial',
 ]);
 
 // @todo: Implement the following ourselves.
@@ -322,6 +319,8 @@ goog.html = exports.closureLibrary_.html;
 goog.style = exports.closureLibrary_.style;
 goog.ui = exports.closureLibrary_.ui;
 goog.color = exports.closureLibrary_.color; // https://drafts.csswg.org/css-color-4/#typedef-named-color
+goog.cloneObject = exports.closureLibrary_.cloneObject;
+goog.partial = exports.closureLibrary_.partial;
 
 goog['__true_library__'] = exports.closureLibrary_;
 goog.global.goog = goog;
